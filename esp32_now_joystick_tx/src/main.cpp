@@ -12,6 +12,9 @@ uint8_t broadcastAddress1[] = {0x ? ?, 0x ? ?, 0x ? ?, 0x ? ?, 0x ? ?, 0x ? ? };
 // uint8_t broadcastAddress2[] = {0xFF, , , , , };
 // uint8_t broadcastAddress3[] = {0xFF, , , , , };
 
+//I used to have problems with this because it used to be very erratic... sometimes it works great, sometimes it doesn't... So I solved it by declaring peerInfo here:
+esp_now_peer_info_t peerInfo;
+
 // ==========================================================================
 // your data structure (the data block you send to receiver)
 // your reciever should use the same data structure
@@ -60,7 +63,7 @@ void setup() {
     esp_now_register_send_cb(OnDataSent);
 
     // register peer
-    esp_now_peer_info_t peerInfo;
+    
     peerInfo.channel = 0;
     peerInfo.encrypt = false;
     // register first peer
